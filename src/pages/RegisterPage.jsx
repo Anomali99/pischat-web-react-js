@@ -19,9 +19,6 @@ function RegisterPage() {
 
   const closeModal = () => {
     setIsOpen(false);
-    for (let value of ["username", "user_uuid", "name", "login"]) {
-      console.log(localStorage.getItem(value));
-    }
     navigate("/");
   };
 

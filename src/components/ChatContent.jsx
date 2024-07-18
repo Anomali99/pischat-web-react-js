@@ -36,7 +36,7 @@ const ChatContent = ({ name, username, uuid }) => {
       conn.off("chats", onChats);
       conn.disconnect();
     };
-  }, []);
+  }, [uuid]);
 
   const handleChange = (e) => {
     setMessage(e.target.value);
@@ -48,8 +48,6 @@ const ChatContent = ({ name, username, uuid }) => {
     }
     setMessage("");
   };
-
-  console.log(chats);
 
   return (
     <div className="w-2/3 h-screen relative bg-oxford-blue-900">
