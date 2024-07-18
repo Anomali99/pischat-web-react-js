@@ -36,7 +36,7 @@ const ChatContent = ({ name, username, uuid }) => {
       conn.off("chats", onChats);
       conn.disconnect();
     };
-  }, [uuid]);
+  }, [name, username, uuid]);
 
   const handleChange = (e) => {
     setMessage(e.target.value);
