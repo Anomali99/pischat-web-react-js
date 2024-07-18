@@ -1,17 +1,29 @@
-import React, { useState } from "react";
-import { ModalQuestion } from "../components";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  ModalQuestion,
+  UserList,
+  ChatContent,
+  BlankContent,
+} from "../components";
+
 const MainPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
+  const [user, setUCurrentUser] = useState({});
   const navigate = useNavigate();
 
+  const clickHandle = (data) => {
+    setCurrentUser(data.user_uuid);
+    setUCurrentUser(data);
+  };
+  const logoutHandle = () => setIsOpen(true);
+  const noHandle = () => setIsOpen(false);
   const yesHandle = () => {
     setIsOpen(false);
     localStorage.clear();
     navigate("/login");
   };
-  const noHandle = () => setIsOpen(false);
-  const logoutHandle = () => setIsOpen(true);
 
   return (
     <div className="w-screen h-screen justify-center items-center flex">
@@ -43,122 +55,17 @@ const MainPage = () => {
               </svg>
             </nav>
           </header>
-          <div className="w-full">
-            <div className="w-full p-4 border-b-[1px] border-b-oxford-blue-400">
-              <h1 className="text-oxford-blue-300 font-bold text-xl mb-1">
-                Nur Fatiq{" "}
-                <span className="font-normal italic text-oxford-blue-400">
-                  @Anomali99
-                </span>
-              </h1>
-              <p className="text-oxford-blue-300 text-sm flex flex-row place-content-between">
-                Hai. <span>17/07/2024</span>
-              </p>
-            </div>
-            <div className="w-full p-4 border-b-[1px] border-b-oxford-blue-400 bg-oxford-blue-700">
-              <h1 className="text-oxford-blue-300 font-bold text-xl mb-1">
-                Nur Fatiq{" "}
-                <span className="font-normal italic text-oxford-blue-400">
-                  @Anomali99
-                </span>
-              </h1>
-              <p className="text-oxford-blue-300 text-sm flex flex-row place-content-between">
-                Hai. <span>17/07/2024</span>
-              </p>
-            </div>
-            <div className="w-full p-4 border-b-[1px] border-b-oxford-blue-400">
-              <h1 className="text-oxford-blue-300 font-bold text-xl mb-1">
-                Nur Fatiq{" "}
-                <span className="font-normal italic text-oxford-blue-400">
-                  @Anomali99
-                </span>
-              </h1>
-              <p className="text-oxford-blue-300 text-sm flex flex-row place-content-between">
-                Hai. <span>17/07/2024</span>
-              </p>
-            </div>
-          </div>
+          <UserList clickHandle={clickHandle} currentUser={currentUser} />
         </div>
-        <div className="w-2/3 h-screen relative bg-oxford-blue-900">
-          <div className="absolute bg-oxford-blue-900 top-0 left-0 right-0 w-full h-20 p-4 border-b-[1px] border-b-oxford-blue-400 flex items-center justify-between">
-            <h3 className="text-oxford-blue-300 text-2xl font-bold">
-              Nur Fatiq{" "}
-              <span className="italic text-oxford-blue-500">@Anomali99</span>
-            </h3>
-            <h5 className="text-green-600">online</h5>
-          </div>
-          <ul className="w-full absolute top-20 bottom-10 left-0 right-0 flex flex-col py-4 gap-4">
-            <li className="mx-4 flex self-start flex-col bg-oxford-blue-400 w-max p-2 rounded-lg rounded-bl-none shadow-md shadow-oxford-blue-950">
-              <p className="text-wrap min-w-20 max-w-screen-lg  self-start text-oxford-blue-950">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deleniti, omnis. Saepe, doloribus, assumenda quidem magnam
-                asperiores inventore minus nihil facere, at doloremque deleniti
-                ut perferendis in quasi ratione nam! Beatae doloremque dolorum
-                neque deleniti accusantium natus perferendis aperiam expedita.
-                Laborum voluptate repellendus facere inventore debitis atque,
-                fugiat animi? Eum libero quam dicta modi, quidem suscipit error?
-                Vel alias amet, sed vitae qui maxime delectus modi natus,
-                quisquam iste molestias quam odit soluta perferendis
-                reprehenderit quos est laboriosam tempore cupiditate deleniti
-                ipsum ratione! Consequatur, facere. Harum minus voluptatibus
-                impedit voluptatum ipsam autem beatae! Modi veniam sequi cum
-                culpa ducimus quasi, facere itaque ipsam ipsum quaerat delectus
-                blanditiis odio eius quibusdam assumenda! Quasi, et impedit ipsa
-                unde aut dolores, dicta vero, praesentium esse eveniet porro
-                ducimus neque quia? Commodi nemo, molestiae vero explicabo
-                laboriosam quo velit, dicta dolorem, pariatur iure quos minima
-                sapiente laudantium? Enim dolor voluptatem non ab officiis amet
-                cupiditate in, pariatur facilis dolores inventore, nostrum
-                debitis illum, impedit quod facere sed aliquam. Nam consectetur
-                fugit itaque asperiores recusandae, perferendis maiores quam
-                quos non expedita laborum suscipit accusamus hic iusto,
-                voluptas, autem totam amet natus repellat libero error quas. Ex,
-                molestiae recusandae amet commodi deserunt molestias nam non
-                eligendi aut?
-              </p>
-              <p className="text-xs self-end text-oxford-blue-950">12:30</p>
-            </li>
-            <li className="mx-4 flex self-end flex-col bg-oxford-blue-950 w-max p-2 rounded-lg rounded-br-none shadow-md shadow-oxford-blue-950">
-              <p className="text-wrap min-w-20 max-w-screen-lg self-start text-oxford-blue-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Nostrum, tempora possimus aspernatur et facere dicta quod cum
-                vero facilis ex. Lorem ipsum dolor, sit amet consectetur
-                adipisicing elit. Consectetur voluptates ad explicabo
-                repudiandae! Quod ipsa molestiae, voluptate voluptates porro
-                necessitatibus.
-              </p>
-              <p className="text-xs self-end text-oxford-blue-400">12:31</p>
-            </li>
-            <li className="flex self-center">
-              <p className="bg-oxford-blue-600 rounded py-1 px-2">17/07/2024</p>
-            </li>
-            <li className="mx-4 flex self-start flex-col bg-oxford-blue-400 w-max p-2 rounded-lg rounded-bl-none shadow-md shadow-oxford-blue-950">
-              <p className="text-wrap min-w-20 max-w-screen-lg  self-start text-oxford-blue-950">
-                Hai
-              </p>
-              <p className="text-xs self-end text-oxford-blue-950">12:30</p>
-            </li>
-          </ul>
-          <div className="w-full h-10 flex flex-row absolute bottom-0 left-0 right-0">
-            <input
-              className="flex flex-1 p-2 outline-none bg-oxford-blue-700 text-oxford-blue-300"
-              placeholder="message..."
-              type="text"
-            />
-            <button className="flex p-2 bg-oxford-blue-700 text-oxford-blue-300">
-              send{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="currentColor"
-              >
-                <path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
-              </svg>
-            </button>
-          </div>
-        </div>
+        {currentUser == "" ? (
+          <BlankContent />
+        ) : (
+          <ChatContent
+            name={user.name}
+            username={user.username}
+            uuid={user.user_uuid}
+          />
+        )}
       </div>
       <ModalQuestion
         isOpen={isOpen}

@@ -1,4 +1,5 @@
 import axios from "axios";
+import getSocket from "./socket";
 
 const baseURL = import.meta.env.VITE_BASE_API_URL;
 
@@ -9,7 +10,7 @@ const options = {
 };
 
 const login = async (data) => {
-  const url = `${baseURL}/user/login`;
+  const url = `${baseURL}/auth/login`;
   try {
     const res = await axios.post(url, data, options);
     return res.data;
@@ -19,7 +20,7 @@ const login = async (data) => {
 };
 
 const register = async (data) => {
-  const url = `${baseURL}/user/register`;
+  const url = `${baseURL}/auth/register`;
   try {
     const res = await axios.post(url, data, options);
     return res.data;
@@ -28,4 +29,14 @@ const register = async (data) => {
   }
 };
 
-export { login, register };
+const getUsers = async (uuid) => {
+  const url = `${baseURL}/user/${uuid}`;
+  try {
+    const res = await axios.get(url, options);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export { login, register, getUsers, getSocket };
