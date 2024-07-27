@@ -7,7 +7,7 @@ const UserList = ({ clickHandle, currentUser }) => {
   const users = result.data;
 
   return (
-    <div className="w-full">
+    <div className="w-full h-[calc(100vh-5rem)] overflow-y-auto">
       {users.map((user) => (
         <div
           key={user.user_uuid}
