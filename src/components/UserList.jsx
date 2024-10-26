@@ -22,7 +22,7 @@ const UserList = ({ clickHandle, currentUser }) => {
               @{user.username}
             </span>
           </h1>
-          <p className="bg-oxford-blue-300 py-1 px-2 rounded-full">10</p>
+          {/* <p className="bg-oxford-blue-300 py-1 px-2 rounded-full">10</p> */}
         </div>
       ))}
     </div>
