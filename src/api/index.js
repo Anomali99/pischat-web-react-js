@@ -1,7 +1,7 @@
 import axios from "axios";
 import getSocket from "./socket";
 
-const baseURL = import.meta.env.VITE_BASE_API_URL;
+const baseURL = `https://${import.meta.env.VITE_BASE_API_URL}`;
 
 const options = {
   headers: {
